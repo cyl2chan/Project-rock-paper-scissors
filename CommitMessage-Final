@@ -1,0 +1,93 @@
+3-20
+
+turn console.log into DOM
+
+function playRound() {
+  computerSelection = getComputerChoice();
+  if (playerSelection === computerSelection) {
+    console.log('It is a tie!');
+  } else if ((playerSelection === 'rock') && (computerSelection == 'paper')) {
+    console.log('You lose! Paper beats Rock!');
+  } else if ((playerSelection === 'paper') && (computerSelection == 'scissors')) {
+    console.log('You lose! Scissors beats Paper!');
+  } else if ((playerSelection === 'scissors') && (computerSelection == 'rock')) {
+    console.log('You lose! Rock beats Scissors!');
+  } else if ((computerSelection === 'paper') && (playerSelection === 'scissors')) {
+    console.log('You win! Rock beats Paper!');
+  } else if ((computerSelection === 'rock') && (playerSelection === 'paper')) {
+    console.log('You win! Scissors beats Paper!');
+  } else if ((computerSelection === 'scissors') && (playerSelection === 'rock')) {
+    console.log('You win! Rock beats Scissors!');
+  } else {console.log('Error in playRound() if else statement!!!');
+  }
+}
+
+to
+
+function playRound() {
+    computerSelection = getComputerChoice();
+    if (playerSelection === computerSelection) {
+      singleResultsText = 'It is a tie!';
+    } else if ((playerSelection === 'rock') && (computerSelection == 'paper')) {
+      singleResultsText = 'You lose! Paper beats Rock!';
+    } else if ((playerSelection === 'paper') && (computerSelection == 'scissors')) {
+      singleResultsText = 'You lose! Scissors beats Paper!';
+    } else if ((playerSelection === 'scissors') && (computerSelection == 'rock')) {
+      singleResultsText = 'You lose! Rock beats Scissors!';
+    } else if ((computerSelection === 'paper') && (playerSelection === 'scissors')) {
+      singleResultsText = 'You win! Rock beats Paper!';
+    } else if ((computerSelection === 'rock') && (playerSelection === 'paper')) {
+      singleResultsText = 'You win! Scissors beats Paper!';
+    } else if ((computerSelection === 'scissors') && (playerSelection === 'rock')) {
+      singleResultsText = 'You win! Rock beats Scissors!';
+    } else {
+      console.log('Error in playRound() if else statement!!!');
+    }
+  }
+
+3-23-2023
+
+have made the displayed running score updated whenever the score changes
+have made changes to the code so winner and final score are announced when one player hit 5 points 
+have stopped the scores and results of a single round from changing when buttons are clicked, when one player reacehs 5 points 
+
+make function addPoint() shorter according to https://jsfiddle.net/snowMonkey/p6uo4k8z/2/:
+ change
+    function addPoint() {
+      if (playerSelection === computerSelection) {
+        noPointComputer();
+        noPointPlayer();
+      } else if (playerSelection === 'rock' && computerSelection === 'paper'){
+        addPointComputer();
+        noPointPlayer();
+      } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+        addPointComputer();
+        noPointPlayer();
+      } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+        addPointComputer();
+        noPointPlayer();
+      } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+        addPointPlayer();
+        noPointComputer();
+      } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+        addPointPlayer();
+        noPointComputer();
+      } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+        addPointPlayer();
+        noPointComputer();
+      } else (console.log('Error in if else statement of addPoint()!!'))
+    }
+
+  to 
+    function addPoint(result) {
+      if (result.startsWith('You lose!')) {
+        addPointComputer();
+        noPointPlayer();
+      } else if (result.startsWith('You win!')) {
+        addPointPlayer();
+        noPointComputer();
+      } else if (result.startsWith('It is a tie')) {
+        noPointComputer();
+        noPointPlayer();
+      } else (console.log('Error in if else statement of addPoint()!!'))
+    }

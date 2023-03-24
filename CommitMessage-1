@@ -1,0 +1,125 @@
+2-14-2023
+
+add <script tag>
+add function getComputerChoice
+    how to get random item from array: https://www.programiz.com/javascript/examples/get-random-item 
+
+
+2-15
+
+make player input insensitive, 
+    https://www.w3schools.com/jsref/jsref_regexp_i.asp
+    https://www.educative.io/answers/what-is-ignorecase
+add function playRound
+    return a string declares the winner of round according to the computer's and player's selection
+
+2-16
+
+add function game() with function playRound inside it
+function playRound contains loop
+
+2-21
+
+add prompt() to get user input
+
+
+change
+
+if (playerSelection === iRock && computerSelection === iPaper) {
+            alert('You lose! Paper beats Rock');
+        } else if (playerSelection === iPaper && computerSelection === iScissors) {
+            alert('You lose! Scissors beats Paper!');
+        } else if (playerSelection === iScissors && computerSelection === iRock) {
+            alert('You lose! Rock beats Scissors!');
+        } else if (playerSelection === iPaper && computerSelection === iRock) {
+            alert('You win! Paper beats Rock!');
+        } else if (playerSelection === iScissors && computerSelection === iPaper) {
+            alert('You win! Scissors beats Paper!');
+        } else if (playerSelection === iRock && computerSelection === iScissors) {
+            alert('You win! Rock beats Scissors!');
+        }
+    }
+
+to 
+
+if (iRock.test(playerSelection) && iPaper.test(computerSelection));
+        } else if (iPaper.test(playerSelection) && iScissors.test(computerSelection)) {
+            alert('You lose! Scissors beats Paper!');
+        } else if (iScissors.test(playerSelection) && iRock.test(computerSelection)) {
+            alert('You lose! Rock beats Scissors!');
+        } else if (iPaper.test(playerSelection) && iRock.test(computerSelection)) {
+            alert('You win! Paper beats Rock!');
+        } else if (iScissors.test(playerSelection) && iPaper.test(computerSelection)) {
+            alert('You win! Scissors beats Paper!');
+        } else if (iRock.test(playerSelection) && iScissors.test(computerSelection)) {
+            alert('You win! Rock beats Scissors!');
+        }
+
+
+delete:
+    //go to 5. to test result
+    const playerSelection = "rock";
+    const computerSelection = getComputerChoice(arr);
+    console.log(playRound(playerSelection, computerSelection));
+
+When open window, it doesn't ask user to input rock, paper, or scissors
+
+Advice from discord:
+
+"So, I've finished. Let's view what is wrong step by step: 
+1) arr has to be declared before getComputerChoice function
+2) playerSelection has to be declared before playRound function
+3) to call a function you should write its name with parentheses(with arguments inside if needed). 
+4) in function game() you tried to call playRound() function before the loop, but it's wrong because you want to call this function inside the loop
+5) also you need to move prompt inside of the loop because you want to ask the user's choice each round 
+6) you declared 'result' variable but never used it 
+7) you tried to handle case-sensitive inputs but overthink yourself. Instead, just use toLowerCase method for user input because you already use lowercase strings for the computer choice
+8) function parameters are unnecessary in your code because you use global variables 
+9) I think using 'else if' is not good for readability. Only 'if' is enough
+
+
+This is how I fixed it (suggest you fix code by yourself first): https://codepen.io/Praesidi/pen/zYJqYVb?editors=0010 " 
+
+
+1421
+open r-p-s2.html
+move "const arr = ['rock', 'paper', 'scissors'];" to 1st line within <script>
+move "let playerSelection = prompt('Input "rock", "paper, or "scissors."');" from function game() to above case insensitivity
+move function playRound inside of loop
+add prompt into loop
+
+
+2-22
+
+comment out "const result = getComputerChoice(arr);"
+
+
+
+come back to 3
+
+2-28
+
+remove logic of game running exactly 5 rounds
+add 3 buttons
+
+//continue DOM man. to add event listener
+
+3-13
+
+converting console.log into DOM methods
+
+next: remove all regex stuff
+https://discord.com/channels/505093832157691914/513125308757442562/1085302676222386267
+
+3-14
+
+no more error in console, but clicking buttons result in no repsonse
+add divSingleResults with DOM method
+test each step with console.log
+
+console.log(getComputerChoice(arr)); --> correctly gives me rock, paper or scissors
+
+
+
+console.log(playerSelection, 'player'); --> "player"
+console.log(computerSelection, 'computer'); --> either "rock computer", "paper computer" or "scissors computer" when i refresh the window
